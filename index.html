@@ -111,16 +111,20 @@
     }
 
     #finalText {
-      position: absolute;
-      top: 25%;
-      left: 10%;
-      width: 80%;
-      font-size: 1.3em;
-      color: #d63384;
-      text-align: left;
-      white-space: pre-wrap;
-      overflow-wrap: break-word;
+    position: absolute;
+    top: 20%;         /* Đẩy chữ xuống sâu hơn */
+    left: 12%;        /* Dịch chữ vào trong bên trái */
+    width: 76%;       /* Hẹp hơn để tránh tràn sang phải */
+    padding: 10px;    /* Khoảng cách với mép khung */
+    font-size: 1.2em;
+    color: #d63384;
+    text-align: left;
+    white-space: pre-wrap;
+    overflow-wrap: break-word;
+    box-sizing: border-box;
     }
+
+
   </style>
 </head>
 <body>
@@ -198,6 +202,7 @@
       videoContainer.style.display = 'none';
       messageContainer.style.display = 'block';
       bgMusic.pause();
+      bgMusic.currentTime = 0;
       typeMessage(message, finalText);
     });
 
