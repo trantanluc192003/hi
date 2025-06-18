@@ -34,8 +34,8 @@
       margin-top: 20px;
       white-space: nowrap;
       overflow: hidden;
-      border-right: 2px solid rgb(252, 49, 157);
-      color: #fd3f9e;
+      border-right: 2px solid #d63384;
+      color: #d63384;
       width: 0;
       display: none;
     }
@@ -70,6 +70,7 @@
       display: none;
       padding: 30px 20px;
       text-align: center;
+      position: relative;
     }
 
     video {
@@ -78,17 +79,66 @@
       border-radius: 15px;
       box-shadow: 0 0 15px #999;
     }
+
+    #continueBtn {
+      position: absolute;
+      bottom: 20px;
+      right: 20px;
+      padding: 10px 20px;
+      font-size: 1em;
+      background-color: #ff3399;
+      color: white;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      display: none;
+      z-index: 10;
+    }
+
+    #messageContainer {
+      display: none;
+      text-align: center;
+      padding: 20px;
+    }
+
+    #messageFrame {
+      width: 900px;
+      height: 900px;
+      background: url('khung.png') no-repeat center center;
+      background-size: contain;
+      margin: 0 auto;
+      position: relative;
+    }
+
+    #finalText {
+      position: absolute;
+      top: 25%;
+      left: 10%;
+      width: 80%;
+      font-size: 1.3em;
+      color: #d63384;
+      text-align: left;
+      white-space: pre-wrap;
+      overflow-wrap: break-word;
+    }
   </style>
 </head>
 <body>
   <div class="center-screen" id="initialScreen">
     <img id="helloGif" src="hello.gif" alt="Hello GIF" />
-    <p id="typewriter">Cậu gì đó ơi, tớ có cái này muốn gửi cậu nè >.<</p>
+    <p id="typewriter">Hello Thảo, tớ có cái này muốn gửi cậu nè ><</p>
     <button id="nextBtn">Cậu ấn vào đây để xem nhé !</button>
   </div>
 
   <div id="videoContainer">
     <video id="cuteVideo" src="cutee.mp4" controls autoplay loop></video>
+    <button id="continueBtn">Continue</button>
+  </div>
+
+  <div id="messageContainer">
+    <div id="messageFrame">
+      <div id="finalText"></div>
+    </div>
   </div>
 
   <script>
@@ -96,8 +146,13 @@
     const typewriter = document.getElementById('typewriter');
     const nextBtn = document.getElementById('nextBtn');
     const videoContainer = document.getElementById('videoContainer');
-    const video = document.getElementById('cuteVideo');
+    const continueBtn = document.getElementById('continueBtn');
     const initialScreen = document.getElementById('initialScreen');
+    const messageContainer = document.getElementById('messageContainer');
+    const finalText = document.getElementById('finalText');
+    const video = document.getElementById('cuteVideo');
+
+    const message = "Chúc em một ngày vui vẻ nhé, anh biết là hôm nay em đi làm rất mệt, vậy nên nghỉ ngơi sớm đi nhé";
 
     window.addEventListener('load', () => {
       helloGif.style.display = 'block';
@@ -115,9 +170,27 @@
     nextBtn.addEventListener('click', () => {
       initialScreen.style.display = 'none';
       videoContainer.style.display = 'block';
-      video.play();
+
+      setTimeout(() => {
+        continueBtn.style.display = 'block';
+      }, 17000); // Sau 17 giây
     });
+
+    continueBtn.addEventListener('click', () => {
+      videoContainer.style.display = 'none';
+      messageContainer.style.display = 'block';
+      typeMessage(message, finalText);
+    });
+
+    function typeMessage(text, element) {
+      let i = 0;
+      element.innerHTML = '';
+      const interval = setInterval(() => {
+        element.innerHTML += text.charAt(i);
+        i++;
+        if (i >= text.length) clearInterval(interval);
+      }, 50);
+    }
   </script>
 </body>
 </html>
-
