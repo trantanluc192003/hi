@@ -82,7 +82,7 @@
 
     #continueBtn {
       position: absolute;
-      bottom: 20px;
+      bottom: 70px;
       right: 20px;
       padding: 10px 20px;
       font-size: 1em;
@@ -102,8 +102,8 @@
     }
 
     #messageFrame {
-      width: 900px;
-      height: 900px;
+      width: 700px;
+      height: 700px;
       background: url('khung.png') no-repeat center center;
       background-size: contain;
       margin: 0 auto;
@@ -197,6 +197,7 @@
     continueBtn.addEventListener('click', () => {
       videoContainer.style.display = 'none';
       messageContainer.style.display = 'block';
+      bgMusic.pause();
       typeMessage(message, finalText);
     });
 
