@@ -111,26 +111,21 @@
     }
 
     #finalText {
-    position: absolute;
-    top: 30%;         /* Đẩy chữ xuống sâu hơn */
-    left: 17%;        /* Dịch chữ vào trong bên trái */
-    width: 76%;       /* Hẹp hơn để tránh tràn sang phải */
-    padding: 20px;    /* Khoảng cách với mép khung */
-    font-size: 1.2em;
-    color: #d63384;
-    text-align: left;
-    white-space: pre-wrap;
-    overflow-wrap: break-word;
-    box-sizing: border-box;
+      position: absolute;
+      top: 30%;
+      left: 17%;
+      width: 76%;
+      padding: 20px;
+      font-size: 1.2em;
+      color: #d63384;
+      text-align: left;
+      white-space: pre-wrap;
+      overflow-wrap: break-word;
+      box-sizing: border-box;
     }
-
-
   </style>
 </head>
 <body>
-  <!-- Nhạc nền -->
-  <audio id="bgMusic" src="nhacnen.mp3" loop></audio>
-
   <!-- Màn hình chào ban đầu -->
   <div class="center-screen" id="initialScreen">
     <img id="helloGif" src="hello.gif" alt="Hello GIF" />
@@ -161,7 +156,6 @@
     const messageContainer = document.getElementById('messageContainer');
     const finalText = document.getElementById('finalText');
     const video = document.getElementById('cuteVideo');
-    const bgMusic = document.getElementById('bgMusic');
 
     const message = "Chúc em một ngày vui vẻ nhé, anh biết là hôm nay em đi làm rất mệt, vậy nên nghỉ ngơi sớm đi nhé";
 
@@ -182,28 +176,20 @@
       initialScreen.style.display = 'none';
       videoContainer.style.display = 'block';
 
-      // Phát video
       video.play().catch(err => {
         console.warn("Không phát được video:", err);
       });
 
-      // Phát nhạc
-      bgMusic.volume = 0.2;
-      bgMusic.play().catch(err => {
-        console.warn("Không phát được nhạc nền:", err);
-      });
-
       setTimeout(() => {
         continueBtn.style.display = 'block';
-      }, 17000); // Sau 17 giây
+      }, 17000);
     });
 
     continueBtn.addEventListener('click', () => {
-        
-      video.pause();                // 👉 Dừng video
-      video.currentTime = 0;       // 👉 Trở về đầu nếu cần
-      bgMusic.pause();             // 👉 Dừng nhạc nền
-      bgMusic.currentTime = 0;     // 👉 Reset về đầu
+      video.loop = false;            // ❌ Tắt vòng lặp
+      video.pause();                 // ⏸ Dừng phát
+      video.currentTime = 0;         // 🔄 Quay lại đầu
+
       videoContainer.style.display = 'none';
       messageContainer.style.display = 'block';
 
