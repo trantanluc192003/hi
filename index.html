@@ -5,16 +5,22 @@
   <title>Gửi Thảo nè</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
-    body {
+    html, body {
+      height: 100%;
       margin: 0;
       padding: 0;
       background-color: #ffe6f0;
       font-family: 'Courier New', monospace;
-      text-align: center;
     }
 
-    .container {
-      padding-top: 50px;
+    .center-screen {
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 20px;
     }
 
     #helloGif {
@@ -30,8 +36,6 @@
       overflow: hidden;
       border-right: 2px solid black;
       width: 0;
-      margin-left: auto;
-      margin-right: auto;
       display: none;
     }
 
@@ -63,7 +67,8 @@
 
     #videoContainer {
       display: none;
-      margin-top: 30px;
+      padding: 30px 20px;
+      text-align: center;
     }
 
     video {
@@ -75,16 +80,14 @@
   </style>
 </head>
 <body>
-  <div class="container">
+  <div class="center-screen" id="initialScreen">
     <img id="helloGif" src="hello.gif" alt="Hello GIF" />
-
     <p id="typewriter">Hello Thảo, tớ có cái này muốn gửi cậu nè ><</p>
-
     <button id="nextBtn">Cậu ấn vào đây để xem nhé !</button>
+  </div>
 
-    <div id="videoContainer">
-      <video id="cuteVideo" src="cutee.mp4" controls autoplay></video>
-    </div>
+  <div id="videoContainer">
+    <video id="cuteVideo" src="cutee.mp4" controls autoplay></video>
   </div>
 
   <script>
@@ -93,6 +96,7 @@
     const nextBtn = document.getElementById('nextBtn');
     const videoContainer = document.getElementById('videoContainer');
     const video = document.getElementById('cuteVideo');
+    const initialScreen = document.getElementById('initialScreen');
 
     window.addEventListener('load', () => {
       helloGif.style.display = 'block';
@@ -108,12 +112,11 @@
     });
 
     nextBtn.addEventListener('click', () => {
-      helloGif.style.display = 'none';
-      typewriter.style.display = 'none';
-      nextBtn.style.display = 'none';
+      initialScreen.style.display = 'none';
       videoContainer.style.display = 'block';
       video.play();
     });
   </script>
 </body>
 </html>
+
