@@ -170,7 +170,8 @@
     nextBtn.addEventListener('click', () => {
       initialScreen.style.display = 'none';
       videoContainer.style.display = 'block';
-
+      bgMusic.volume = 0.5;
+      bgMusic.play();
       setTimeout(() => {
         continueBtn.style.display = 'block';
       }, 17000); // Sau 17 giây
