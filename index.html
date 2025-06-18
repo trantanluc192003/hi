@@ -124,17 +124,23 @@
   </style>
 </head>
 <body>
+  <!-- Nhạc nền -->
+  <audio id="bgMusic" src="nhacnen.mp3" loop></audio>
+
+  <!-- Màn hình chào ban đầu -->
   <div class="center-screen" id="initialScreen">
     <img id="helloGif" src="hello.gif" alt="Hello GIF" />
     <p id="typewriter">Hello Thảo, tớ có cái này muốn gửi cậu nè ><</p>
     <button id="nextBtn">Cậu ấn vào đây để xem nhé !</button>
   </div>
 
+  <!-- Màn hình video -->
   <div id="videoContainer">
-    <video id="cuteVideo" src="cutee.mp4" controls autoplay loop></video>
+    <video id="cuteVideo" src="cutee.mp4" controls></video>
     <button id="continueBtn">Continue</button>
   </div>
 
+  <!-- Màn hình tin nhắn -->
   <div id="messageContainer">
     <div id="messageFrame">
       <div id="finalText"></div>
@@ -151,6 +157,7 @@
     const messageContainer = document.getElementById('messageContainer');
     const finalText = document.getElementById('finalText');
     const video = document.getElementById('cuteVideo');
+    const bgMusic = document.getElementById('bgMusic');
 
     const message = "Chúc em một ngày vui vẻ nhé, anh biết là hôm nay em đi làm rất mệt, vậy nên nghỉ ngơi sớm đi nhé";
 
@@ -170,8 +177,18 @@
     nextBtn.addEventListener('click', () => {
       initialScreen.style.display = 'none';
       videoContainer.style.display = 'block';
+
+      // Phát video
+      video.play().catch(err => {
+        console.warn("Không phát được video:", err);
+      });
+
+      // Phát nhạc
       bgMusic.volume = 0.5;
-      bgMusic.play();
+      bgMusic.play().catch(err => {
+        console.warn("Không phát được nhạc nền:", err);
+      });
+
       setTimeout(() => {
         continueBtn.style.display = 'block';
       }, 17000); // Sau 17 giây
