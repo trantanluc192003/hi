@@ -199,10 +199,14 @@
     });
 
     continueBtn.addEventListener('click', () => {
+        
+      video.pause();                // 👉 Dừng video
+      video.currentTime = 0;       // 👉 Trở về đầu nếu cần
+      bgMusic.pause();             // 👉 Dừng nhạc nền
+      bgMusic.currentTime = 0;     // 👉 Reset về đầu
       videoContainer.style.display = 'none';
       messageContainer.style.display = 'block';
-      bgMusic.pause();
-      bgMusic.currentTime = 0;
+
       typeMessage(message, finalText);
     });
 
